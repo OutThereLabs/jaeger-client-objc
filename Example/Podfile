@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'jaeger-client-objc_Example' do
+  pod 'jaeger-client-objc', :path => '../'
+
+  target 'jaeger-client-objc_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
