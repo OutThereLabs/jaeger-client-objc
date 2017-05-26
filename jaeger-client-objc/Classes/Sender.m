@@ -19,7 +19,6 @@
 @property (strong, nonatomic, nonnull) NSString *host;
 @property (nonatomic) uint16_t port;
 @property (strong, nonatomic, nonnull) NSMutableArray<Span*> *pendingSpans;
-@property (strong, nonatomic, nonnull) NSArray<Tag*> *tags;
 @property (strong, nonatomic, nonnull) AgentClient *client;
 @property (strong, nonatomic, nonnull) TMemoryBuffer *buffer;
 @property (strong, nonatomic, nonnull) GCDAsyncUdpSocket *socket;

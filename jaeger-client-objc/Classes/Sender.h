@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class Process, Span;
+@class Process, Span, Tag;
 @interface Sender : NSObject
 
 @property (nonatomic) int maxPendingSpans;
+@property (strong, nonatomic, nonnull) NSArray<Tag*> *tags;
 
 - (nonnull instancetype)initWithHost:(nonnull NSString *)host port:(uint16_t)port error:(NSError * _Nullable * _Nullable)error;
 - (void)appendSpan:(nonnull Span *)span;

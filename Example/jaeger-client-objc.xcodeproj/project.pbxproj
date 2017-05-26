@@ -24,7 +24,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A83E2CF8A8CC22E1EAC47B43 /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483AF60ADDB818D60ED9890B /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework */; };
 		B8494EF990188C7AA45AFD8E /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99248738AB377D5A9B56A481 /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework */; };
-		D33AC6E41ED8CEB60079A7CB /* Jaeger.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D33AC6E31ED8CEB60079A7CB /* Jaeger.podspec */; };
+		D3B7A3AB1ED8EB4A00E32D96 /* Jaeger.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D3B7A3AA1ED8EB4A00E32D96 /* Jaeger.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		99248738AB377D5A9B56A481 /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jaeger_client_objc_jaeger_client_objc_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2AA2CFE2927AB56A06FF82 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B0EC9F80DE9E382DDBEE4DBE /* Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Example/Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D33AC6E31ED8CEB60079A7CB /* Jaeger.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Jaeger.podspec; sourceTree = "<group>"; };
+		D3B7A3AA1ED8EB4A00E32D96 /* Jaeger.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Jaeger.podspec; path = ../Jaeger.podspec; sourceTree = "<group>"; };
 		E0E7E9E84C9E9902F67FC0D0 /* Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Example/Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E5349C1B6306EFAA22467EE4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,7 +190,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				D33AC6E31ED8CEB60079A7CB /* Jaeger.podspec */,
+				D3B7A3AA1ED8EB4A00E32D96 /* Jaeger.podspec */,
 				E5349C1B6306EFAA22467EE4 /* README.md */,
 				9B2AA2CFE2927AB56A06FF82 /* LICENSE */,
 			);
@@ -280,7 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33AC6E41ED8CEB60079A7CB /* Jaeger.podspec in Resources */,
+				D3B7A3AB1ED8EB4A00E32D96 /* Jaeger.podspec in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
