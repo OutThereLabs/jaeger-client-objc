@@ -1,0 +1,1 @@
+../../jaeger-idl/thrift/jaeger.thrift

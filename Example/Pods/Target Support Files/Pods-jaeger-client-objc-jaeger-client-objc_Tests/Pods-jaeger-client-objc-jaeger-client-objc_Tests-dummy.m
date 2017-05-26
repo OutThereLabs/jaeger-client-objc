@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_jaeger_client_objc_jaeger_client_objc_Tests : NSObject
+@end
+@implementation PodsDummy_Pods_jaeger_client_objc_jaeger_client_objc_Tests
+@end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C8EF6D9FA33DAA733849610 /* Pods_jaeger_client_objc_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6417A42965FA82377D414BD3 /* Pods_jaeger_client_objc_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -22,8 +21,10 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
-		7D5D47471560DE8E4CA416C0 /* Pods_jaeger_client_objc_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B7BDFB082C618FC1635D2B /* Pods_jaeger_client_objc_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A83E2CF8A8CC22E1EAC47B43 /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483AF60ADDB818D60ED9890B /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework */; };
+		B8494EF990188C7AA45AFD8E /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99248738AB377D5A9B56A481 /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework */; };
+		D33AC6E41ED8CEB60079A7CB /* Jaeger.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D33AC6E31ED8CEB60079A7CB /* Jaeger.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		36B7BDFB082C618FC1635D2B /* Pods_jaeger_client_objc_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jaeger_client_objc_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		187273F0C9044F74857929B3 /* Pods-jaeger-client-objc-jaeger-client-objc_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc-jaeger-client-objc_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Tests/Pods-jaeger-client-objc-jaeger-client-objc_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		483AF60ADDB818D60ED9890B /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* jaeger-client-objc_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jaeger-client-objc_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,16 +59,15 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		6417A42965FA82377D414BD3 /* Pods_jaeger_client_objc_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jaeger_client_objc_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		664B9DD4412035BA41EC74F9 /* jaeger-client-objc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = "jaeger-client-objc.podspec"; path = "../jaeger-client-objc.podspec"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		78E7FF66552A3E37CF0DFDFA /* Pods-jaeger-client-objc_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc_Tests/Pods-jaeger-client-objc_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9B2AA2CFE2927AB56A06FF82 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		CB8B4F4D57C584383FD3CC13 /* Pods-jaeger-client-objc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc_Example/Pods-jaeger-client-objc_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		D9286BA80236818675BA7308 /* Pods-jaeger-client-objc_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc_Example/Pods-jaeger-client-objc_Example.release.xcconfig"; sourceTree = "<group>"; };
-		DF5A2FB384AD992FCB4D3C2E /* Pods-jaeger-client-objc_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc_Tests/Pods-jaeger-client-objc_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E5349C1B6306EFAA22467EE4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		909C26C8CDADC1B004519C4D /* Pods-jaeger-client-objc-jaeger-client-objc_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc-jaeger-client-objc_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Tests/Pods-jaeger-client-objc-jaeger-client-objc_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		99248738AB377D5A9B56A481 /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jaeger_client_objc_jaeger_client_objc_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B2AA2CFE2927AB56A06FF82 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B0EC9F80DE9E382DDBEE4DBE /* Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Example/Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D33AC6E31ED8CEB60079A7CB /* Jaeger.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Jaeger.podspec; sourceTree = "<group>"; };
+		E0E7E9E84C9E9902F67FC0D0 /* Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Example/Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E5349C1B6306EFAA22467EE4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +78,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				3C8EF6D9FA33DAA733849610 /* Pods_jaeger_client_objc_Example.framework in Frameworks */,
+				B8494EF990188C7AA45AFD8E /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +89,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				7D5D47471560DE8E4CA416C0 /* Pods_jaeger_client_objc_Tests.framework in Frameworks */,
+				A83E2CF8A8CC22E1EAC47B43 /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,10 +99,10 @@
 		2170C4D6104781DA8CB2EF3C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CB8B4F4D57C584383FD3CC13 /* Pods-jaeger-client-objc_Example.debug.xcconfig */,
-				D9286BA80236818675BA7308 /* Pods-jaeger-client-objc_Example.release.xcconfig */,
-				DF5A2FB384AD992FCB4D3C2E /* Pods-jaeger-client-objc_Tests.debug.xcconfig */,
-				78E7FF66552A3E37CF0DFDFA /* Pods-jaeger-client-objc_Tests.release.xcconfig */,
+				E0E7E9E84C9E9902F67FC0D0 /* Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig */,
+				B0EC9F80DE9E382DDBEE4DBE /* Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig */,
+				909C26C8CDADC1B004519C4D /* Pods-jaeger-client-objc-jaeger-client-objc_Tests.debug.xcconfig */,
+				187273F0C9044F74857929B3 /* Pods-jaeger-client-objc-jaeger-client-objc_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -134,8 +135,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				6417A42965FA82377D414BD3 /* Pods_jaeger_client_objc_Example.framework */,
-				36B7BDFB082C618FC1635D2B /* Pods_jaeger_client_objc_Tests.framework */,
+				99248738AB377D5A9B56A481 /* Pods_jaeger_client_objc_jaeger_client_objc_Example.framework */,
+				483AF60ADDB818D60ED9890B /* Pods_jaeger_client_objc_jaeger_client_objc_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -189,7 +190,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				664B9DD4412035BA41EC74F9 /* jaeger-client-objc.podspec */,
+				D33AC6E31ED8CEB60079A7CB /* Jaeger.podspec */,
 				E5349C1B6306EFAA22467EE4 /* README.md */,
 				9B2AA2CFE2927AB56A06FF82 /* LICENSE */,
 			);
@@ -247,7 +248,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = JGR;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = pat2man;
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -279,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33AC6E41ED8CEB60079A7CB /* Jaeger.podspec in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -324,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc_Tests/Pods-jaeger-client-objc_Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Tests/Pods-jaeger-client-objc-jaeger-client-objc_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		859A8C3459C9D2C4899A998C /* [CP] Check Pods Manifest.lock */ = {
@@ -354,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc_Example/Pods-jaeger-client-objc_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Example/Pods-jaeger-client-objc-jaeger-client-objc_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FE8F4330D39E684B45B18BAA /* [CP] Copy Pods Resources */ = {
@@ -369,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc_Tests/Pods-jaeger-client-objc_Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Tests/Pods-jaeger-client-objc-jaeger-client-objc_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF88FBB546617686EEBD9AAC /* [CP] Copy Pods Resources */ = {
@@ -384,7 +386,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc_Example/Pods-jaeger-client-objc_Example-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jaeger-client-objc-jaeger-client-objc_Example/Pods-jaeger-client-objc-jaeger-client-objc_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -459,14 +461,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -479,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -499,20 +506,25 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -521,7 +533,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB8B4F4D57C584383FD3CC13 /* Pods-jaeger-client-objc_Example.debug.xcconfig */;
+			baseConfigurationReference = E0E7E9E84C9E9902F67FC0D0 /* Pods-jaeger-client-objc-jaeger-client-objc_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -536,7 +548,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9286BA80236818675BA7308 /* Pods-jaeger-client-objc_Example.release.xcconfig */;
+			baseConfigurationReference = B0EC9F80DE9E382DDBEE4DBE /* Pods-jaeger-client-objc-jaeger-client-objc_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -551,7 +563,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF5A2FB384AD992FCB4D3C2E /* Pods-jaeger-client-objc_Tests.debug.xcconfig */;
+			baseConfigurationReference = 909C26C8CDADC1B004519C4D /* Pods-jaeger-client-objc-jaeger-client-objc_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -575,7 +587,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78E7FF66552A3E37CF0DFDFA /* Pods-jaeger-client-objc_Tests.release.xcconfig */;
+			baseConfigurationReference = 187273F0C9044F74857929B3 /* Pods-jaeger-client-objc-jaeger-client-objc_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

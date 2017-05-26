@@ -17,7 +17,7 @@ jaeger-client-objc is available through [CocoaPods](http://cocoapods.org). To in
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "jaeger-client-objc"
+pod "Jaeger"
 ```
 
 ## Author
