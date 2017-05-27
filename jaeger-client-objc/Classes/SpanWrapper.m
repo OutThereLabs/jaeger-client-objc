@@ -46,19 +46,23 @@
 - (void)log:(NSDictionary<NSString *,NSObject *> *)fields timestamp:(NSDate *)timestamp {
     NSMutableArray *tags = [NSMutableArray new];
     for (NSString *key in fields.allKeys) {
-        Tag *tag = [[Tag alloc] initWithKey:key vType:TagTypeSTRING vStr:fields[key] vDouble:0 vBool:NO vLong:0 vBinary:[NSData data]];
-        [tags addObject:tag];
+        if ([fields[key] isKindOfClass:[NSString class]]) {
+            Tag *tag = [[Tag alloc] initWithKey:key vType:TagTypeSTRING vStr:(NSString*)fields[key] vDouble:0 vBool:NO vLong:0 vBinary:[NSData data]];
+            [tags addObject:tag];
+        } else if ([fields[key] isKindOfClass:[NSNumber class]]) {
+            NSNumber *number = (NSNumber*)fields[key];
+            Tag *tag = [[Tag alloc] initWithKey:key vType:TagTypeDOUBLE vStr:@"" vDouble:number.doubleValue vBool:NO vLong:0 vBinary:[NSData data]];
+            [tags addObject:tag];
+        } else {
+            NSString *description = ((NSObject*)fields[key]).description;
+            Tag *tag = [[Tag alloc] initWithKey:key vType:TagTypeSTRING vStr:description vDouble:0 vBool:NO vLong:0 vBinary:[NSData data]];
+            [tags addObject:tag];
+        }
     }
 
     NSTimeInterval timeInterval = [timestamp timeIntervalSince1970];
     Log *log = [[Log alloc] initWithTimestamp:timeInterval * 1000000 fields:tags];
     [self.logs addObject:log];
-}
-
-- (void)log:(NSString *)eventName timestamp:(NSDate *)timestamp payload:(NSObject *)payload {
-    if (timestamp != nil) {
-        [self log:@{@"event": eventName} timestamp:timestamp];
-    }
 }
 
 - (void)setTag:(NSString *)key value:(NSString *)value {
@@ -112,6 +116,12 @@
 
 - (void)logEvent:(NSString *)eventName payload:(NSObject *)payload {
     [self log:eventName timestamp:[NSDate date] payload:payload];
+}
+
+- (void)log:(NSString *)eventName timestamp:(NSDate *)timestamp payload:(NSObject *)payload {
+    if (timestamp != nil) {
+        [self log:@{@"event": eventName} timestamp:timestamp];
+    }
 }
 
 - (void)finish {

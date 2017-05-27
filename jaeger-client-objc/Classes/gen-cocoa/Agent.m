@@ -249,14 +249,6 @@ NSString *AgentErrorDomain = @"AgentErrorDomain";
     service = aService;
     methodMap = [NSMutableDictionary dictionary];
     {
-      SEL s = @selector(process_emitZipkinBatch_withSequenceID:inProtocol:outProtocol:error:);
-      NSMethodSignature * sig = [self methodSignatureForSelector: s];
-      NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];
-      [invocation setSelector: s];
-      [invocation retainArguments];
-      [methodMap setValue: invocation forKey: @"emitZipkinBatch"];
-    }
-    {
       SEL s = @selector(process_emitBatch_withSequenceID:inProtocol:outProtocol:error:);
       NSMethodSignature * sig = [self methodSignatureForSelector: s];
       NSInvocation * invocation = [NSInvocation invocationWithMethodSignature: sig];

@@ -36,7 +36,7 @@
         return nil;
     }
 
-    SInt64 traceID;
+    unsigned long long traceID;
     if ([components[0] isEqualToString:@"0"]) {
         traceID = 0;
     } else {
@@ -44,7 +44,7 @@
         [traceIDScanner scanHexLongLong:&traceID];
     }
 
-    SInt64 spanID;
+    unsigned long long spanID;
     if ([components[1] isEqualToString:@"0"]) {
         spanID = 0;
     } else {
@@ -53,7 +53,7 @@
     }
 
 
-    SInt64 parentSpanID;
+    unsigned long long parentSpanID;
     if ([components[2] isEqualToString:@"0"]) {
         parentSpanID = 0;
     } else {
@@ -62,7 +62,7 @@
     }
 
 
-    SInt32 flags;
+    unsigned flags;
     if ([components[3] isEqualToString:@"0"]) {
         flags = 0;
     } else {
