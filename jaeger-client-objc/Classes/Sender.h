@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^SenderCompletionBlock)(NSError*_Nullable);
+
 @class Process, Span, Tag;
 @interface Sender : NSObject
 
@@ -17,5 +19,6 @@
 - (nonnull instancetype)initWithHost:(nonnull NSString *)host port:(uint16_t)port error:(NSError * _Nullable * _Nullable)error;
 - (void)appendSpan:(nonnull Span *)span;
 - (BOOL)flush:(NSError * _Nullable * _Nullable)error;
+- (void)asyncFlush:(SenderCompletionBlock _Nullable)completionBlock;
 
 @end

@@ -14,6 +14,7 @@
 @property (readonly, nonnull) Recorder *recorder;
 
 - (nonnull instancetype)initWithBaseURL:(nonnull NSURL*)baseURL;
-- (BOOL)flush:(NSError * _Nullable * _Nullable)error;
+- (BOOL)flush:(NSError * _Nullable * _Nullable)error __deprecated;
+- (void)asyncFlush:(nullable void (^)(NSError *_Nullable error))doneCallback;
 
 @end

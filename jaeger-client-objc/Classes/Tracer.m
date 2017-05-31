@@ -108,4 +108,8 @@
     return [self.recorder.sender flush:error];
 }
 
+- (void)asyncFlush:(void (^)(NSError * _Nullable))doneCallback {
+    [self.recorder.sender asyncFlush:doneCallback];
+}
+
 @end

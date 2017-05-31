@@ -19,6 +19,7 @@
 @property (strong, nonatomic, nonnull) NSString *host;
 @property (nonatomic) uint16_t port;
 @property (strong, nonatomic, nonnull) NSMutableArray<Span*> *pendingSpans;
+@property (strong, nonatomic, nonnull) NSMutableDictionary<NSNumber*, SenderCompletionBlock> *pendingCompletionBlocks;
 @property (strong, nonatomic, nonnull) AgentClient *client;
 @property (strong, nonatomic, nonnull) TMemoryBuffer *buffer;
 @property (strong, nonatomic, nonnull) GCDAsyncUdpSocket *socket;
@@ -38,13 +39,14 @@
 - (instancetype)initWithHost:(NSString *)host port:(uint16_t)port error:(NSError **)error {
     self = [super init];
     if (self) {
-        self.maxPendingSpans = 10;
+        self.maxPendingSpans = 100;
         self.host = host;
         self.port = port;
 
         self.socket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
         self.pendingSpans = [NSMutableArray new];
-        self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(flushTimerHit:) userInfo:nil repeats:YES];
+        self.pendingCompletionBlocks = [NSMutableDictionary new];
+        self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(flushTimerHit:) userInfo:nil repeats:YES];
 
         [self resetBuffer];
     }
@@ -73,6 +75,41 @@
     } @catch (NSException *exception) {
         NSLog(@"Exception: %@", exception);
         return false;
+    }
+}
+
+
+- (void)asyncFlush:(SenderCompletionBlock)completionBlock {
+    @synchronized(self) {
+        if (self.pendingSpans.count < 1) {
+            completionBlock(nil);
+        }
+
+        NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
+        Process *process = [[Process alloc] initWithServiceName:bundleInfo[@"CFBundleName"] tags:self.tags];
+
+        Batch *batch = [[Batch alloc] initWithProcess:process spans:self.pendingSpans];
+
+        self.pendingSpans = [NSMutableArray new];
+
+        NSError *error;
+        if (![self.client emitBatch:batch error:&error]) {
+            NSLog(@"Error flushing spans");
+            completionBlock(error);
+            return;
+        }
+
+        if (completionBlock != nil) {
+            long tag = 0;
+            while ([self.pendingCompletionBlocks.allKeys containsObject:@(tag)] || tag == 0) {
+                tag = arc4random();
+            }
+            self.pendingCompletionBlocks[@(tag)] = completionBlock;
+
+            [self flushBufferWithTag:tag];
+        } else {
+            [self flushBuffer:nil];
+        }
     }
 }
 
@@ -109,14 +146,17 @@
 }
 
 - (BOOL)flushBuffer:(NSError **)error {
+    [self flushBufferWithTag:0];
+    return YES;
+}
+
+- (void)flushBufferWithTag:(long)tag {
     NSData *data = [[NSData alloc] initWithData:[self.buffer buffer]];
 
     [self resetBuffer];
 
-    [self.socket sendData:data toHost:self.host port:self.port withTimeout:60 tag:0];
+    [self.socket sendData:data toHost:self.host port:self.port withTimeout:60 tag:tag];
     [self.socket closeAfterSending];
-
-    return YES;
 }
 
 // MARK: - GCDAsyncUdpSocketDelegate
@@ -130,11 +170,27 @@
 }
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
-
+    @synchronized (self) {
+        SenderCompletionBlock block = [self.pendingCompletionBlocks objectForKey:@(tag)];
+        if (block != nil) {
+            [self.pendingCompletionBlocks removeObjectForKey:@(tag)];
+            block(nil);
+        } else if (block != 0) {
+            NSLog(@"Could not line up completion block for tag %@", @(tag));
+        }
+    }
 }
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError * _Nullable)error {
-    NSLog(@"Did not send data duel to error: %@", error);
+    @synchronized (self) {
+        SenderCompletionBlock block = [self.pendingCompletionBlocks objectForKey:@(tag)];
+        if (block != nil) {
+            [self.pendingCompletionBlocks removeObjectForKey:@(tag)];
+            block(error);
+        } else if (block != 0) {
+            NSLog(@"Could not line up completion block for tag %@", @(tag));
+        }
+    }
 }
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
