@@ -1,6 +1,6 @@
 {
   "name": "Jaeger",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "summary": "A short description of jaeger-client-objc.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/pat2man/jaeger-client-objc",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/pat2man/jaeger-client-objc.git",
-    "tag": "0.1.0"
+    "tag": "0.1.3"
   },
   "platforms": {
     "ios": "9.0"

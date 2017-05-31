@@ -41,7 +41,9 @@
                                              tags:spanWrapper.tags
                                              logs:spanWrapper.logs];
 
-    [self.sender appendSpan:span];
+    if (spanWrapper.context.flags > 0) {
+        [self.sender appendSpan:span];
+    }
 }
 
 @end

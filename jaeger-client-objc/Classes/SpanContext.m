@@ -24,6 +24,7 @@
     if (self) {
         self.traceID = parentSpanContext.traceID;
         self.parentSpanID = parentSpanContext.spanID;
+        self.flags = parentSpanContext.flags ?: 1;
         [self generateIDs];
     }
     return self;

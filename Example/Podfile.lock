@@ -6,7 +6,7 @@ PODS:
   - CocoaLumberjack/Default (3.2.0)
   - CocoaLumberjack/Extensions (3.2.0):
     - CocoaLumberjack/Default
-  - Jaeger (0.1.0):
+  - Jaeger (0.1.3):
     - CocoaAsyncSocket
     - CocoaLumberjack
     - opentracing
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
   CocoaLumberjack: 9b4aed7073d242f29cc2f62068d995faf67f703a
-  Jaeger: f87eb2f662a5bdbd2f9af6d4414d6d68a6a9168b
+  Jaeger: 4f7f8b5181cc69f28f7e925e073144b1eddf0862
   opentracing: 2c1a1076e2ab26f56189b02dcb1e72cf0b297917
 
 PODFILE CHECKSUM: aa7c572e58d9467b0ea054f07d7c669f5b08a7b7
