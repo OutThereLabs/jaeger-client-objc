@@ -30,7 +30,9 @@
 @implementation Sender
 
 - (BOOL)shouldFlush {
-    return self.pendingSpans.count >= self.maxPendingSpans;
+    @synchronized (self) {
+        return self.pendingSpans.count >= self.maxPendingSpans;
+    }
 }
 
 - (instancetype)initWithHost:(NSString *)host port:(uint16_t)port error:(NSError **)error {
@@ -50,7 +52,9 @@
 }
 
 - (void)appendSpan:(Span *)span {
-    [self.pendingSpans addObject:span];
+    @synchronized(self) {
+        [self.pendingSpans addObject:span];
+    }
 
     if (self.shouldFlush) {
         NSError *error;
@@ -82,19 +86,19 @@
 }
 
 - (void)flushSpans:(NSError **)error {
-    if (self.pendingSpans.count < 1) {
-        return;
-    }
+    @synchronized(self) {
+        if (self.pendingSpans.count < 1) {
+            return;
+        }
 
-    NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
-    Process *process = [[Process alloc] initWithServiceName:bundleInfo[@"CFBundleName"] tags:self.tags];
+        NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
+        Process *process = [[Process alloc] initWithServiceName:bundleInfo[@"CFBundleName"] tags:self.tags];
 
-    NSArray<Span*> *spans = [NSArray arrayWithArray:self.pendingSpans];
-    [self.pendingSpans removeAllObjects];
-
-    Batch *batch = [[Batch alloc] initWithProcess:process spans:spans];
-    if (![self.client emitBatch:batch error:error] || ![self flushBuffer:error]) {
-        NSLog(@"Error flushing spans");
+        Batch *batch = [[Batch alloc] initWithProcess:process spans:self.pendingSpans];
+        if (![self.client emitBatch:batch error:error] || ![self flushBuffer:error]) {
+            NSLog(@"Error flushing spans");
+        }
+        self.pendingSpans = [NSMutableArray new];
     }
 }
 

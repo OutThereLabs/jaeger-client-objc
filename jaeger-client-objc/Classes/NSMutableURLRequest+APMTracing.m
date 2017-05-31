@@ -15,18 +15,22 @@
 - (id<OTSpan>)startSpanWithParentContext:(id<OTSpanContext>)parent {
     NSMutableDictionary *tags = [NSMutableDictionary new];
     tags[@"http.url"] = self.URL.absoluteString;
-    tags[@"http.path"] = self.URL.absoluteString;
+    tags[@"http.path"] = self.URL.path;
     tags[@"http.method"] = self.HTTPMethod;
 
     NSMutableArray *templateComponents = [NSMutableArray arrayWithCapacity:self.URL.pathComponents.count];
     for (NSString *pathComponent in self.URL.pathComponents) {
-        if ([pathComponent isEqualToString:@"/"]) {
-            [templateComponents addObject:@""];
-        } else if ([[NSUUID alloc] initWithUUIDString:pathComponent] == nil) {
-            [templateComponents addObject:pathComponent];
-        } else {
-            [templateComponents addObject:@":id"];
+        NSMutableArray *templateSubComponents = [NSMutableArray arrayWithCapacity:self.URL.pathComponents.count];
+        for (NSString *pathSubComponent in [pathComponent componentsSeparatedByString:@"."]) {
+            if ([pathSubComponent isEqualToString:@"/"]) {
+                [templateSubComponents addObject:@""];
+            } else if ([[NSUUID alloc] initWithUUIDString:pathSubComponent] == nil) {
+                [templateSubComponents addObject:pathComponent];
+            } else {
+                [templateSubComponents addObject:@":id"];
+            }
         }
+        [templateComponents addObject:[templateSubComponents componentsJoinedByString:@"."]];
     }
     NSString *templatePath = [templateComponents componentsJoinedByString:@"/"];
 
