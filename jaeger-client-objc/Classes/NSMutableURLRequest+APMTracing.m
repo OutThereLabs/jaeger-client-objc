@@ -25,7 +25,7 @@
             if ([pathSubComponent isEqualToString:@"/"]) {
                 [templateSubComponents addObject:@""];
             } else if ([[NSUUID alloc] initWithUUIDString:pathSubComponent] == nil) {
-                [templateSubComponents addObject:pathComponent];
+                [templateSubComponents addObject:pathSubComponent];
             } else {
                 [templateSubComponents addObject:@":id"];
             }
