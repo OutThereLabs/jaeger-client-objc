@@ -187,7 +187,7 @@
         if (block != nil) {
             [self.pendingCompletionBlocks removeObjectForKey:@(tag)];
             block(error);
-        } else if (block != 0) {
+        } else if (tag != 0) {
             NSLog(@"Could not line up completion block for tag %@", @(tag));
         }
     }
