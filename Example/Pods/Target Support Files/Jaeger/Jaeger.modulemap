@@ -1,6 +1,0 @@
-framework module Jaeger {
-  umbrella header "Jaeger-umbrella.h"
-
-  export *
-  module * { export * }
-}
