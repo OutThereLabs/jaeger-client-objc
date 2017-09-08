@@ -10,6 +10,7 @@
 #import <opentracing/OTGlobal.h>
 #import <opentracing/OTTracer.h>
 #import <opentracing/OTSpan.h>
+#import <opentracing/OTReference.h>
 
 @implementation URLSessionTaskTracker
 
@@ -21,50 +22,70 @@
         return;
     }
 
+    OTReference *reference = [OTReference followsFrom:parentContext];
+    id<OTSpan> span = [[OTGlobal sharedTracer] startSpan:@"Metrics" references:@[reference] tags:nil startTime:metrics.taskInterval.startDate];
+
     for (NSURLSessionTaskTransactionMetrics *metric in metrics.transactionMetrics) {
-        [self trackMetrics:metric parentContext:parentContext];
+        [self trackMetrics:metric parentContext:span.context];
     }
+
+    [span finishWithTime:metrics.taskInterval.endDate];
+}
+
++ (nullable NSDate*)logEvent:(NSString*)eventName timestamp:(NSDate*)timestamp toSpan:(id<OTSpan>)span andAppendToArray:(NSMutableArray**)array {
+    if (timestamp) {
+        [span log:@{@"event": eventName} timestamp:timestamp];
+        [*array addObject:timestamp];
+    }
+
+    return timestamp;
 }
 
 + (void)trackMetrics:(NSURLSessionTaskTransactionMetrics*)metrics parentContext:(id<OTSpanContext>)parentContext {
-    id<OTSpan> span = [[OTGlobal sharedTracer] startSpan:@"Metrics" childOf:parentContext tags:nil startTime:metrics.fetchStartDate];
+    NSString *spanName = @"Transaction";
+
+    switch (metrics.resourceFetchType) {
+        case NSURLSessionTaskMetricsResourceFetchTypeUnknown:
+            spanName = @"Unknown";
+            break;
+        case NSURLSessionTaskMetricsResourceFetchTypeLocalCache:
+            spanName = @"Local Cache";
+            break;
+        case NSURLSessionTaskMetricsResourceFetchTypeServerPush:
+            spanName = @"Server Push";
+            break;
+        case NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad:
+            spanName = @"Network Load";
+            break;
+    }
+
+    id<OTSpan> span = [[OTGlobal sharedTracer] startSpan:spanName childOf:parentContext tags:nil startTime:metrics.fetchStartDate];
 
     [span setTag:@"network.protocol.name" value:metrics.networkProtocolName];
     [span setTag:@"connection.refused" boolValue:metrics.reusedConnection];
     [span setTag:@"connection.proxy" boolValue:metrics.proxyConnection];
 
-    switch (metrics.resourceFetchType) {
-            case NSURLSessionTaskMetricsResourceFetchTypeUnknown:
-            [span setTag:@"resource.fetch.type" value:@"Unknown"];
-            break;
-            case NSURLSessionTaskMetricsResourceFetchTypeLocalCache:
-            [span setTag:@"resource.fetch.type" value:@"Local Cache"];
-            break;
-            case NSURLSessionTaskMetricsResourceFetchTypeServerPush:
-            [span setTag:@"resource.fetch.type" value:@"Server Push"];
-            break;
-            case NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad:
-            [span setTag:@"resource.fetch.type" value:@"Network Load"];
-            break;
-    }
+    NSMutableArray *possibleEndDates = [[NSMutableArray alloc] initWithCapacity:10];
 
-    [span log:@"Fetch Start" timestamp:metrics.fetchStartDate payload:nil];
+    [self logEvent:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate toSpan:span andAppendToArray:&possibleEndDates];
 
-    [span log:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate payload:nil];
-    [span log:@"Domain Lookup End" timestamp:metrics.domainLookupEndDate payload:nil];
+    [self logEvent:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Domain Lookup End" timestamp:metrics.domainLookupEndDate toSpan:span andAppendToArray:&possibleEndDates];
 
-    [span log:@"Connect Start" timestamp:metrics.connectStartDate payload:nil];
-    [span log:@"Secure Connection Start" timestamp:metrics.secureConnectionStartDate payload:nil];
-    [span log:@"Secure Connection End" timestamp:metrics.secureConnectionEndDate payload:nil];
-    [span log:@"Connect End" timestamp:metrics.connectEndDate payload:nil];
+    [self logEvent:@"Connect Start" timestamp:metrics.connectStartDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Secure Connection Start" timestamp:metrics.secureConnectionStartDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Secure Connection End" timestamp:metrics.secureConnectionEndDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Connect End" timestamp:metrics.connectEndDate toSpan:span andAppendToArray:&possibleEndDates];
 
-    [span log:@"Request Start" timestamp:metrics.requestStartDate payload:nil];
-    [span log:@"Request End" timestamp:metrics.requestEndDate payload:nil];
+    [self logEvent:@"Request Start" timestamp:metrics.requestStartDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Request End" timestamp:metrics.requestEndDate toSpan:span andAppendToArray:&possibleEndDates];
 
-    [span log:@"Response Start" timestamp:metrics.responseStartDate payload:nil];
-    [span log:@"Response End" timestamp:metrics.responseEndDate payload:nil];
+    [self logEvent:@"Response Start" timestamp:metrics.responseStartDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Response End" timestamp:metrics.responseEndDate toSpan:span andAppendToArray:&possibleEndDates];
 
-    [span finishWithTime:metrics.responseEndDate ?: metrics.fetchStartDate];
+    NSDate *endDate = [possibleEndDates valueForKeyPath:@"@max.self"];
+
+    [span finishWithTime:endDate ?: metrics.fetchStartDate];
 }
 
 @end
