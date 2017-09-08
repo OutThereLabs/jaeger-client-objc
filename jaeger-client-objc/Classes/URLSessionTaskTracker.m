@@ -22,8 +22,7 @@
         return;
     }
 
-    OTReference *reference = [OTReference followsFrom:parentContext];
-    id<OTSpan> span = [[OTGlobal sharedTracer] startSpan:@"Metrics" references:@[reference] tags:nil startTime:metrics.taskInterval.startDate];
+    id<OTSpan> span = [[OTGlobal sharedTracer] startSpan:@"Metrics" childOf:parentContext tags:nil startTime:metrics.taskInterval.startDate];
 
     for (NSURLSessionTaskTransactionMetrics *metric in metrics.transactionMetrics) {
         [self trackMetrics:metric parentContext:span.context];
