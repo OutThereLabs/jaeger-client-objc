@@ -31,13 +31,11 @@
     [span finishWithTime:metrics.taskInterval.endDate];
 }
 
-+ (nullable NSDate*)logEvent:(NSString*)eventName timestamp:(NSDate*)timestamp toSpan:(id<OTSpan>)span andAppendToArray:(NSMutableArray**)array {
++ (void)logEvent:(NSString*)eventName timestamp:(NSDate*)timestamp toSpan:(id<OTSpan>)span andAppendToArray:(NSMutableArray*)array {
     if (timestamp) {
         [span log:@{@"event": eventName} timestamp:timestamp];
-        [*array addObject:timestamp];
+        [array addObject:timestamp];
     }
-
-    return timestamp;
 }
 
 + (void)trackMetrics:(NSURLSessionTaskTransactionMetrics*)metrics parentContext:(id<OTSpanContext>)parentContext {
@@ -66,21 +64,21 @@
 
     NSMutableArray *possibleEndDates = [[NSMutableArray alloc] initWithCapacity:10];
 
-    [self logEvent:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate toSpan:span andAppendToArray:possibleEndDates];
 
-    [self logEvent:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate toSpan:span andAppendToArray:&possibleEndDates];
-    [self logEvent:@"Domain Lookup End" timestamp:metrics.domainLookupEndDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Domain Lookup Start" timestamp:metrics.domainLookupStartDate toSpan:span andAppendToArray:possibleEndDates];
+    [self logEvent:@"Domain Lookup End" timestamp:metrics.domainLookupEndDate toSpan:span andAppendToArray:possibleEndDates];
 
-    [self logEvent:@"Connect Start" timestamp:metrics.connectStartDate toSpan:span andAppendToArray:&possibleEndDates];
-    [self logEvent:@"Secure Connection Start" timestamp:metrics.secureConnectionStartDate toSpan:span andAppendToArray:&possibleEndDates];
-    [self logEvent:@"Secure Connection End" timestamp:metrics.secureConnectionEndDate toSpan:span andAppendToArray:&possibleEndDates];
-    [self logEvent:@"Connect End" timestamp:metrics.connectEndDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Connect Start" timestamp:metrics.connectStartDate toSpan:span andAppendToArray:possibleEndDates];
+    [self logEvent:@"Secure Connection Start" timestamp:metrics.secureConnectionStartDate toSpan:span andAppendToArray:possibleEndDates];
+    [self logEvent:@"Secure Connection End" timestamp:metrics.secureConnectionEndDate toSpan:span andAppendToArray:possibleEndDates];
+    [self logEvent:@"Connect End" timestamp:metrics.connectEndDate toSpan:span andAppendToArray:possibleEndDates];
 
-    [self logEvent:@"Request Start" timestamp:metrics.requestStartDate toSpan:span andAppendToArray:&possibleEndDates];
-    [self logEvent:@"Request End" timestamp:metrics.requestEndDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Request Start" timestamp:metrics.requestStartDate toSpan:span andAppendToArray:possibleEndDates];
+    [self logEvent:@"Request End" timestamp:metrics.requestEndDate toSpan:span andAppendToArray:possibleEndDates];
 
-    [self logEvent:@"Response Start" timestamp:metrics.responseStartDate toSpan:span andAppendToArray:&possibleEndDates];
-    [self logEvent:@"Response End" timestamp:metrics.responseEndDate toSpan:span andAppendToArray:&possibleEndDates];
+    [self logEvent:@"Response Start" timestamp:metrics.responseStartDate toSpan:span andAppendToArray:possibleEndDates];
+    [self logEvent:@"Response End" timestamp:metrics.responseEndDate toSpan:span andAppendToArray:possibleEndDates];
 
     NSDate *endDate = [possibleEndDates valueForKeyPath:@"@max.self"];
 
