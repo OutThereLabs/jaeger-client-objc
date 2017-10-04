@@ -11,7 +11,7 @@
 @class SpanContext, SpanRef, Tag, Log, Tracer;
 @interface SpanWrapper : NSObject <OTSpan>
 
-- (nonnull instancetype)initWithTracer:(nonnull Tracer *)tracer operationName:(nonnull NSString*)operationName startTime:(nonnull NSDate*)startTime parentSpanContext:(nullable SpanContext*)parentSpanContext;
+- (nonnull instancetype)initWithTracer:(nonnull Tracer *)tracer operationName:(nonnull NSString*)operationName startTime:(nonnull NSDate*)startTime references:(nullable NSArray<OTReference*>*)references;
 
 // MARK: - Jaeger Span Properties
 
