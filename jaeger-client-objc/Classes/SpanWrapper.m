@@ -20,7 +20,7 @@
 @property (strong, atomic, nonnull) NSDate *startTime;
 @property (strong, nonatomic, nullable) NSDate* finishedAt;
 
-@property (strong, atomic, nonnull) NSMutableArray<SpanRef*> *references;
+@property (strong, atomic, nonnull) NSArray<SpanRef*> *references;
 @property (strong, atomic, nonnull) NSMutableArray<Tag*> *tags;
 @property (strong, atomic, nonnull) NSMutableArray<Log*> *logs;
 
@@ -28,14 +28,51 @@
 
 @implementation SpanWrapper
 
-- (instancetype)initWithTracer:(Tracer *)tracer operationName:(NSString*)operationName startTime:(NSDate*)startTime parentSpanContext:(SpanContext*)parentSpanContext {
++ (nullable SpanContext*)parentSpanContextFromReferences:(NSArray<OTReference*>*)references {
+    SpanContext *parentSpanContext = nil;
+
+    for (OTReference *reference in references) {
+        if ([reference.type isEqualToString:OTReferenceChildOf] && [(NSObject*)reference.referencedContext isKindOfClass:[SpanContext class]]) {
+            NSAssert(parentSpanContext == nil, @"Should only have one parent span context reference");
+            parentSpanContext = (SpanContext*)reference.referencedContext;
+        }
+    }
+
+    return parentSpanContext;
+}
+
++ (nonnull NSArray<SpanRef*>*)spanRefsFromOTReferences:(NSArray<OTReference*>*)otReferences {
+    NSMutableArray *spanRefs = [[NSMutableArray alloc] initWithCapacity:otReferences.count];
+
+    for (OTReference *otReference in otReferences) {
+        if ([(NSObject*)otReference.referencedContext isKindOfClass:[SpanContext class]]) {
+            SpanRefType refType;
+
+            if ([otReference.type isEqualToString:OTReferenceChildOf]) {
+                refType = SpanRefTypeCHILD_OF;
+            } else if ([otReference.type isEqualToString:OTReferenceFollowsFrom]) {
+                refType = SpanRefTypeFOLLOWS_FROM;
+            } else {
+                break;
+            }
+
+            SpanContext *referencedContext = (SpanContext*)otReference.referencedContext;
+            SpanRef *spanRef = [[SpanRef alloc] initWithRefType:refType traceIdLow:referencedContext.traceID traceIdHigh:0 spanId:referencedContext.spanID];
+            [spanRefs addObject:spanRef];
+        }
+    }
+
+    return [spanRefs copy];
+}
+
+- (instancetype)initWithTracer:(Tracer *)tracer operationName:(NSString *)operationName startTime:(NSDate *)startTime references:(NSArray<OTReference *> *)references {
     self = [super init];
     if (self) {
         self.operationName = operationName;
         self.tracer = tracer;
-        self.context = [[SpanContext alloc] initWithParentSpanContext:parentSpanContext];
+        self.context = [[SpanContext alloc] initWithParentSpanContext:[SpanWrapper parentSpanContextFromReferences:references]];
         self.startTime = startTime;
-        self.references = [NSMutableArray new];
+        self.references = [SpanWrapper spanRefsFromOTReferences:references];
         self.tags = [NSMutableArray new];
         self.logs = [NSMutableArray new];
     }

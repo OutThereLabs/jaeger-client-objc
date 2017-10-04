@@ -58,16 +58,7 @@
 }
 
 - (id<OTSpan>)startSpan:(NSString *)operationName references:(NSArray *)references tags:(NSDictionary *)tags startTime:(NSDate *)startTime {
-    SpanContext *parentSpanContext = nil;
-
-    for (OTReference *reference in references) {
-        if ([reference.type isEqualToString:OTReferenceChildOf] && [(NSObject*)reference.referencedContext isKindOfClass:[SpanContext class]]) {
-            NSAssert(parentSpanContext == nil, @"Should only have one parent span context reference");
-            parentSpanContext = (SpanContext*)reference.referencedContext;
-        }
-    }
-
-    SpanWrapper *spanWrapper = [[SpanWrapper alloc] initWithTracer:self operationName:operationName startTime:startTime parentSpanContext:parentSpanContext];
+    SpanWrapper *spanWrapper = [[SpanWrapper alloc] initWithTracer:self operationName:operationName startTime:startTime references:references];
     for (NSString *key in tags.allKeys) {
         [spanWrapper setTag:key value:tags[key]];
     }
