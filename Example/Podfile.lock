@@ -1,6 +1,6 @@
 PODS:
   - CocoaAsyncSocket (7.6.1)
-  - Jaeger (0.1.10):
+  - Jaeger (0.1.11):
     - CocoaAsyncSocket
     - opentracing
   - opentracing (0.5.0)
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
-  Jaeger: 06f7525edf64d9f48ca51a2e67b775ba4799df93
+  Jaeger: a1f2d884dd91e487da4b4736184adc7b205b2ecc
   opentracing: 2c1a1076e2ab26f56189b02dcb1e72cf0b297917
 
 PODFILE CHECKSUM: aa7c572e58d9467b0ea054f07d7c669f5b08a7b7
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0.beta.1
